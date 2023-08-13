@@ -8,6 +8,8 @@ use App\Services\ReportService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ReceiptController extends Controller
 {
@@ -15,6 +17,23 @@ class ReceiptController extends Controller
     public function __construct()
     {
     }
+
+
+
+    public function index(Request $request): Response
+    {
+        return Inertia::render('Receipt/Index', [
+            'test' => 234
+        ]);
+    }
+
+
+
+    public function create(Request $request): Response
+    {
+        return Inertia::render('Receipt/Create');
+    }
+
 
     public function store(ReceiptRequest $request, Receipt $receipt)
     {

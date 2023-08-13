@@ -23,9 +23,8 @@ return new class extends Migration
             $table->string('city', 20);
             $table->string('phone', 20);
             $table->string('hash_key', 255);
-            $table->date('entry_at');
-            $table->integer('entry_by');
-            $table->timestamps();
+            $table->foreignId('entry_by')->constrained('users', 'id');
+            $table->timestamp('entry_at');
         });
     }
 

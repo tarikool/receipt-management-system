@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Receipt extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
+    protected $guarded = ['id'];
+
+
 }
