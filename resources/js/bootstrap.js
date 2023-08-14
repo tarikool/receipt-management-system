@@ -8,6 +8,8 @@ import axios from 'axios';
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.baseURL = document.head.querySelector('meta[name="api-base-url"]').content;
+window.baseUrl = document.head.querySelector('meta[name="api-base-url"]').content;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

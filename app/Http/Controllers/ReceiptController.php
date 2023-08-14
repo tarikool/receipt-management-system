@@ -19,16 +19,6 @@ class ReceiptController extends Controller
     }
 
 
-
-    public function index(Request $request): Response
-    {
-        return Inertia::render('Receipt/Index', [
-            'test' => 234
-        ]);
-    }
-
-
-
     public function create(Request $request): Response
     {
         return Inertia::render('Receipt/Create');

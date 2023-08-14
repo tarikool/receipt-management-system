@@ -8,7 +8,7 @@
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Report" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -27,10 +27,10 @@
                         <input
                             id="searchInput"
                             type="text"
-                            class="px-4 py-2 border mr-1 rounded-md focus:outline-none focus:ring-blue-500"
+                            class="px-4 py-1 border mr-1 rounded-md focus:outline-none focus:ring-blue-500"
                             placeholder="Search..."/>
                         <button id="searchButton"
-                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Search
+                            class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600">Search
                         </button>
                     </div>
                 </div>
