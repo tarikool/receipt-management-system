@@ -13,7 +13,7 @@ const errors = {
 const totalPercentage = (val, vm) => vm.totalPercentage >= 0 && vm.totalPercentage <= 100
 const bankInfo = (val, vm) => vm.hasBank ? val : true
 const text = (val, vm) => /^[a-zA-Z\s]+$/.test(val)
-const maxWords = (val, vm) => /^(\S+\s*){1,2}$/.test(val)
+const maxWords = (val, vm) => /^(\S+\s*){1,30}$/.test(val)
 const phone = (val, vm) => val.length === 10
 
 

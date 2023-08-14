@@ -8,8 +8,8 @@ use App\Services\ReportService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 use Inertia\Inertia;
-use Inertia\Response;
 
 class ReceiptController extends Controller
 {
@@ -19,7 +19,7 @@ class ReceiptController extends Controller
     }
 
 
-    public function create(Request $request): Response
+    public function create(Request $request): \Inertia\Response
     {
         return Inertia::render('Receipt/Create');
     }
@@ -30,17 +30,16 @@ class ReceiptController extends Controller
         $receipt->amount = $request->amount;
         $receipt->buyer = $request->buyer;
         $receipt->receipt_id = $request->receipt_id;
-        $receipt->items = implode(',', $request->items);
+        $receipt->items = $request->items;
         $receipt->buyer_email = $request->buyer_email;
         $receipt->buyer_ip = $request->buyer_ip;
         $receipt->note = $request->note;
         $receipt->city = $request->city;
         $receipt->phone = $request->phone;
 
-        $receipt->buyer_ip = $request->ip();
-        $receipt->hash_key = Crypt::encryptString($request->receipt_id . hash('sha512',  $request->phone));
-        $receipt->entry_by = auth()->id();
         $receipt->save();
+
+        return Response::json(['messsage' => 'Receipt created']);
 
     }
 

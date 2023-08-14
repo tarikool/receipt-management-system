@@ -24,14 +24,13 @@ class ReceiptRequest extends FormRequest
     {
         return [
             'amount' => 'required|int',
-            'buyer' => 'required|string|max:20',
-            'receipt_id' => 'required|string',
-            'items.*' => 'required|string', // This allows an array of items
+            'buyer' => 'required|string',
+            'receipt_id' => 'required|string|max:20',
+            'items' => 'required|string',
             'buyer_email' => 'required|email',
-            'note' => 'nullable|string', // Assuming an average word length of 5
+            'note' => 'nullable|string',
             'city' => 'required|string',
-            'phone' => 'required|numeric|regex:/^880[0-9]{9}$/',
-            'entry_by' => 'required|numeric',
+            'phone' => 'required|numeric|regex:/^[0-9]{10}$/',
         ];
     }
 }
