@@ -19,20 +19,19 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-between space-x-2 bg-white p-3">
+                    <div class="flex">
+
+                        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm"
+                               :value="entryBy"
+                               @input="searchReports"
+                               placeholder="Search.."/>
+                    </div>
+
                     <Link class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                           :href="route('receipts.create')"> Add New
                     </Link>
 
-                    <div class="flex">
-                        <input
-                            id="searchInput"
-                            type="text"
-                            class="px-4 py-1 border mr-1 rounded-md focus:outline-none focus:ring-blue-500"
-                            placeholder="Search..."/>
-                        <button id="searchButton"
-                            class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600">Search
-                        </button>
-                    </div>
+
                 </div>
 
 
@@ -49,12 +48,11 @@
                                 Amount
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Receipt
+                                Receipt ID
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Items
                             </th>
-
                             <th scope="col" class="px-6 py-3">
                                 Entry By
                             </th>
@@ -68,29 +66,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple MacBook Pro 17"
-                            </th>
-                            <td class="px-6 py-4">
-                                Silver
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop
-                            </td>
-                            <td class="px-6 py-4">
-                                $2999
-                            </td>
-                            <td class="px-6 py-4">
-                                $2999
-                            </td>
-                            <td class="px-6 py-4">
-                                ${{test}}
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
+                        <template v-for="receipt in receipts" :key="receipt.id">
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    v-text="receipt.buyer"/>
+                                <td class="px-6 py-4" v-text="receipt.amount"/>
+                                <td class="px-6 py-4" v-text="receipt.receipt_id"/>
+                                <td class="px-6 py-4" v-text="receipt.items"/>
+                                <td class="px-6 py-4" v-text="receipt.entry_by"/>
+                                <td class="px-6 py-4" v-text="receipt.entry_at"/>
+                                <td class="px-6 py-4 text-right">
+                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                </td>
+                            </tr>
+                        </template>
+
+
 
                         </tbody>
                     </table>
@@ -105,14 +97,17 @@
 </template>
 
 <script>
+    import { router } from '@inertiajs/vue3'
+
     export default {
         name: "List",
-        props: ['test'],
-        data() {
-            return {
-                brandList: [],
-            }
+        props: ['receipts', 'entryBy'],
+        methods: {
+            searchReports() {
+                router.get('/reports', {entryBy: event.target.value})
+            },
         },
+
     }
 </script>
 

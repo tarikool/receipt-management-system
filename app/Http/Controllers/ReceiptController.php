@@ -39,7 +39,7 @@ class ReceiptController extends Controller
 
         $receipt->save();
 
-        return Response::json(['messsage' => 'Receipt created']);
+        return Response::json(['message' => 'Receipt is added']);
 
     }
 
