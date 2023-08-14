@@ -12,8 +12,7 @@ class ReportController extends Controller
 {
     public function index(Request $request): Response
     {
-        $receipts = Receipt::where('entry_by', Auth::id())
-            ->when($request->entryBy, function ($q, $v) {
+        $receipts = Receipt::when($request->entryBy, function ($q, $v) {
                 $q->whereEntryBy($v);
             })
             ->latest('entry_at')
