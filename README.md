@@ -34,6 +34,11 @@ After cloning this repository please follow below steps:
 
 3. Open another terminal and run  "npm install" & "npm run dev"
 
+Demo credentials
+
+email: user@email.com
+pass: password
+
 Thank you.
 
 
